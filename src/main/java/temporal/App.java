@@ -47,12 +47,11 @@ public class App {
     OrderInfo newOrder = DataHelper.getRandomNewOrderInfo();
     wf.add(newOrder);
 
-    OrderInfo updateOrder = new OrderInfo(newOrder.getOrderID(), OrderInfo.UpdateType.MODIFY, newOrder.getMessage());
+    OrderInfo updateOrder =
+        new OrderInfo(newOrder.getOrderID(), OrderInfo.UpdateType.MODIFY, newOrder.getMessage());
     wf.update(updateOrder);
 
-
     wf.exit();
-
   }
 
   private static WorkerFactory startWorkerWithFactory(WorkflowClient client) {

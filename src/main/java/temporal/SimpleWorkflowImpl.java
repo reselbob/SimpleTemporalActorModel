@@ -26,14 +26,14 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
 
   @Override
   public void update(OrderInfo orderInfo) {
-    logger.info("Updating order: " + orderInfo.toString());
+    logger.info("Updating order in Workflow: " + orderInfo.toString());
     // Add new order updates to the queue
     orderProcessingActivity.update(orderInfo);
   }
 
   @Override
   public void register(OrderInfo orderInfo) {
-    logger.info("Registering order: " + orderInfo.toString());
+    logger.info("Registering order in Workflow: " + orderInfo.toString());
     this.registeredOrderInfos.add(orderInfo);
   }
 
@@ -48,10 +48,9 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
     Workflow.await(() -> exit);
   }
 
-
   @Override
   public void add(OrderInfo orderInfo) {
-    logger.info("Adding order: " + orderInfo.toString());
+    logger.info("Adding order in Workflow: " + orderInfo.toString());
     orderProcessingActivity.add(orderInfo);
     this.registeredOrderInfos.add(orderInfo);
   }

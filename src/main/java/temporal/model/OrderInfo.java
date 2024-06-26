@@ -26,8 +26,7 @@ public class OrderInfo {
 
   String message;
 
-  public OrderInfo() {
-  }
+  public OrderInfo() {}
 
   public OrderInfo(UUID orderID, UpdateType updateType, String message) {
     this.orderID = orderID;
