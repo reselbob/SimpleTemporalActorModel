@@ -1,68 +1,58 @@
 package temporal;
 
 import io.temporal.activity.ActivityOptions;
-import io.temporal.workflow.WorkflowInfo;
 import io.temporal.workflow.Workflow;
-import io.temporal.workflow.WorkflowQueue;
-import temporal.model.OrderUpdate;
-
 import java.time.Duration;
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import temporal.model.OrderInfo;
 
-public class OrderManagementWorkflowImpl implements OrderManagementWorkflow {
+public class SimpleWorkflowImpl implements SimpleWorkflow {
 
-    private final OrderProcessingActivity orderProcessingActivity =
-            Workflow.newActivityStub(
-                    OrderProcessingActivity.class,
-                    ActivityOptions.newBuilder().setStartToCloseTimeout(Duration.ofSeconds(2)).build());
+  private boolean exit = false;
 
-    // instantiate your WorkflowQueue to prevent a race and add a capacity based
-    // on your business logic
-    private WorkflowQueue<OrderUpdate> signals = Workflow.newWorkflowQueue(Integer.MAX_VALUE);
+  private static final Logger logger = LoggerFactory.getLogger(SimpleWorkflowImpl.class);
 
-    private io.temporal.workflow.WorkflowInfo info;
+  private final List<OrderInfo> registeredOrderInfos = new LinkedList<>();
 
-    @Override
-    public void newOrderSignal(OrderUpdate update) {
-        // Add new order updates to the queue
-        signals.put(update);
-    }
+  private final OrderProcessingActivity orderProcessingActivity =
+      Workflow.newActivityStub(
+          OrderProcessingActivity.class,
+          ActivityOptions.newBuilder().setStartToCloseTimeout(Duration.ofSeconds(2)).build());
 
-    public void start() {
+  private io.temporal.workflow.WorkflowInfo info;
 
-        /*
-        for (OrderUpdate element: updates) {
-            signals.offer(element);
-        }*/
+  @Override
+  public void update(OrderInfo orderInfo) {
+    logger.info("Updating order: " + orderInfo.toString());
+    // Add new order updates to the queue
+    orderProcessingActivity.update(orderInfo);
+  }
 
-        this.signals = updates;
+  @Override
+  public void register(OrderInfo orderInfo) {
+    logger.info("Registering order: " + orderInfo.toString());
+    this.registeredOrderInfos.add(orderInfo);
+  }
 
-        WorkflowInfo info = Workflow.getInfo();
+  @Override
+  public void exit() {
+    logger.info("Exiting Workflow for SimpleWorkflow");
+    exit = true;
+  }
 
-
-
-        while(!info.isContinueAsNewSuggested()){
-            long timeSinceStarted = Workflow.currentTimeMillis() - info.getRunStartedTimestampMillis();
-
-            Duration duration = Duration.ofMillis(timeSinceStarted);
-            Duration twentyFourHours = Duration.ofHours(24);
-
-            boolean shouldProcessMore = Workflow.await(twentyFourHours.minus(duration), () ->  signals.poll() != null);
-
-            if (shouldProcessMore){
-                break;
-            }
-
-            OrderUpdate update = signals.poll();
+  public void start() {
+    logger.info("Starting Workflow for SimpleWorkflow");
+    Workflow.await(() -> exit);
+  }
 
 
-            // Call the activity to process the Update
-            orderProcessingActivity.processUpdate(update);
-
-        }
-
-        Workflow.continueAsNew(signals);
-
-    }
+  @Override
+  public void add(OrderInfo orderInfo) {
+    logger.info("Adding order: " + orderInfo.toString());
+    orderProcessingActivity.add(orderInfo);
+    this.registeredOrderInfos.add(orderInfo);
+  }
 }

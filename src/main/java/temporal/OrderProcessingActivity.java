@@ -1,9 +1,11 @@
 package temporal;
 
 import io.temporal.activity.ActivityInterface;
-import temporal.model.OrderUpdate;
+import temporal.model.OrderInfo;
 
 @ActivityInterface
 public interface OrderProcessingActivity {
-    void processUpdate(OrderUpdate orderUpdate) ;
+  void add(OrderInfo orderInfo);
+
+  void update(OrderInfo orderInfo);
 }

@@ -2,19 +2,36 @@ package temporal.model;
 
 import java.util.UUID;
 
-public class OrderUpdate {
-    public enum UpdateType {
-        PURCHASE, CANCEL, MODIFY
-    }
+public class OrderInfo {
+  public enum UpdateType {
+    PURCHASE,
+    CANCEL,
+    MODIFY
+  }
 
-    UUID orderID;
-    UpdateType updateType;
+  public String getMessage() {
+    return message;
+  }
 
-    String message;
+  public UpdateType getUpdateType() {
+    return updateType;
+  }
 
-    public OrderUpdate(UUID orderID, UpdateType updateType, String message) {
-        this.orderID = orderID;
-        this.updateType = updateType;
-        this.message = message;
-    }
+  public UUID getOrderID() {
+    return orderID;
+  }
+
+  UUID orderID;
+  UpdateType updateType;
+
+  String message;
+
+  public OrderInfo() {
+  }
+
+  public OrderInfo(UUID orderID, UpdateType updateType, String message) {
+    this.orderID = orderID;
+    this.updateType = updateType;
+    this.message = message;
+  }
 }
