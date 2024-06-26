@@ -1,11 +1,20 @@
 package temporal;
 
-import temporal.model.OrderUpdate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import temporal.model.OrderInfo;
 
 public class OrderProcessingActivityImpl implements OrderProcessingActivity {
 
-    @Override
-    public void processUpdate(OrderUpdate orderUpdate) {
-        // Put some logging behavior in there
-    }
+  private static final Logger logger = LoggerFactory.getLogger(OrderProcessingActivityImpl.class);
+
+  @Override
+  public void add(OrderInfo orderInfo) {
+    logger.info("Order added in Activity: " + orderInfo.toString());
+  }
+
+  @Override
+  public void update(OrderInfo orderInfo) {
+    logger.info("Order updated in Activity: " + orderInfo.toString());
+  }
 }
