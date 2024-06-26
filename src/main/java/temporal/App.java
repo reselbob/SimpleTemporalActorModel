@@ -48,8 +48,14 @@ public class App {
     wf.add(newOrder);
 
     OrderInfo updateOrder =
-        new OrderInfo(newOrder.getOrderID(), OrderInfo.UpdateType.MODIFY, newOrder.getMessage());
+        new OrderInfo(
+            newOrder.getOrderId(),
+            newOrder.getCustomerId(),
+            OrderInfo.UpdateType.MODIFY,
+            newOrder.getMessage());
     wf.update(updateOrder);
+
+    wf.notifyCustomer(updateOrder);
 
     wf.exit();
   }

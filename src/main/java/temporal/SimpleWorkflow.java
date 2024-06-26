@@ -19,5 +19,8 @@ public interface SimpleWorkflow {
   void register(OrderInfo orderInfo);
 
   @SignalMethod
+  void notifyCustomer(OrderInfo orderInfo);
+
+  @SignalMethod
   void exit();
 }

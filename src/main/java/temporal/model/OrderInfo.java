@@ -17,19 +17,24 @@ public class OrderInfo {
     return updateType;
   }
 
-  public UUID getOrderID() {
-    return orderID;
+  public UUID getOrderId() {
+    return orderId;
   }
 
-  UUID orderID;
-  UpdateType updateType;
+  public UUID getCustomerId() {
+    return customerId;
+  }
 
+  UUID orderId;
+  UUID customerId;
+  UpdateType updateType;
   String message;
 
   public OrderInfo() {}
 
-  public OrderInfo(UUID orderID, UpdateType updateType, String message) {
-    this.orderID = orderID;
+  public OrderInfo(UUID orderId, UUID customerId, UpdateType updateType, String message) {
+    this.customerId = customerId;
+    this.orderId = orderId;
     this.updateType = updateType;
     this.message = message;
   }

@@ -1,6 +1,9 @@
 package temporal;
 
 import io.temporal.activity.ActivityOptions;
+import io.temporal.api.enums.v1.ParentClosePolicy;
+import io.temporal.workflow.Async;
+import io.temporal.workflow.ChildWorkflowOptions;
 import io.temporal.workflow.Workflow;
 import java.time.Duration;
 import java.util.LinkedList;
@@ -38,12 +41,29 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
   }
 
   @Override
+  public void notifyCustomer(OrderInfo orderInfo) {
+
+    logger.info("Notifying customer for order from parent workflow: " + orderInfo.toString());
+    ChildWorkflowOptions childWorkflowOptions =
+        ChildWorkflowOptions.newBuilder()
+            .setWorkflowId("childWorkflow")
+            .setParentClosePolicy(ParentClosePolicy.PARENT_CLOSE_POLICY_ABANDON)
+            .build();
+    ChildWorkflow childWorkflow =
+        Workflow.newChildWorkflowStub(ChildWorkflow.class, childWorkflowOptions);
+
+    Async.procedure(childWorkflow::sendNotification, orderInfo);
+    Workflow.getWorkflowExecution(childWorkflow).get();
+  }
+
+  @Override
   public void exit() {
     logger.info("Exiting Workflow for SimpleWorkflow");
     exit = true;
   }
 
   public void start() {
+
     logger.info("Starting Workflow for SimpleWorkflow");
     Workflow.await(() -> exit);
   }

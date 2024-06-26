@@ -15,9 +15,10 @@ public class DataHelper {
   }
 
   public static OrderInfo getRandomNewOrderInfo() {
-    UUID orderID = UUID.randomUUID();
+    UUID orderId = UUID.randomUUID();
+    UUID customerId = UUID.randomUUID();
     OrderInfo.UpdateType updateType = OrderInfo.UpdateType.PURCHASE;
     String message = generateRandomString(10);
-    return new OrderInfo(orderID, updateType, message);
+    return new OrderInfo(orderId, customerId, updateType, message);
   }
 }
