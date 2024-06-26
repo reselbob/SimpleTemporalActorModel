@@ -1,5 +1,8 @@
-# temporal-signals
-This project demonstrates how to use signals in a Temporal workflow.
+# Understanding a Temporal workflow as an implementation of the Actor Model
+
+The project demonstrates how key features of the Actor Model map onto Temporal workflows.
+
+---
 
 To execute the code take the following steps:
 
@@ -34,6 +37,8 @@ Java version: 18.0.2, vendor: Oracle Corporation, runtime: /usr/lib/jvm/jdk-18.0
 Default locale: en_US, platform encoding: UTF-8
 OS name: "linux", version: "5.19.0-46-generic", arch: "amd64", family: "unix"
 ```
+
+---
 
 ## (2) Download and install the Temporal CLI (which includes the server)
 
