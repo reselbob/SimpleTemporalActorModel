@@ -4,6 +4,7 @@ import io.temporal.activity.ActivityOptions;
 import io.temporal.workflow.WorkflowInfo;
 import io.temporal.workflow.Workflow;
 import io.temporal.workflow.WorkflowQueue;
+import org.slf4j.Logger;
 import temporal.model.OrderUpdate;
 
 import java.time.Duration;
@@ -11,7 +12,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class OrderManagementWorkflowImpl implements OrderManagementWorkflow {
-
+    private static final Logger logger = Workflow.getLogger(OrderManagementWorkflowImpl.class);
     private final OrderProcessingActivity orderProcessingActivity =
             Workflow.newActivityStub(
                     OrderProcessingActivity.class,
@@ -23,22 +24,31 @@ public class OrderManagementWorkflowImpl implements OrderManagementWorkflow {
 
     private io.temporal.workflow.WorkflowInfo info;
 
+    private boolean exit = false;
+
     @Override
-    public void newOrderSignal(OrderUpdate update) {
+    public void addUpdate(OrderUpdate update) {
         // Add new order updates to the queue
         signals.put(update);
     }
 
+    @Override
+    public void exit() {
+        logger.info("Exiting Order Management Workflow");
+        exit = true;
+    }
+
+
     // Entity workflow pattern with serialization of request
     // (ie. only one request is processed at a time)
-    public void orderManagementWorkflow(WorkflowQueue<OrderUpdate> updates) {
+    public void start() {
 
         /*
         for (OrderUpdate element: updates) {
             signals.offer(element);
         }*/
 
-        this.signals = updates;
+        //this.signals = updates;
 
         WorkflowInfo info = Workflow.getInfo();
 

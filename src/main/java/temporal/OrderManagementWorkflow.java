@@ -9,9 +9,12 @@ import java.util.List;
 public interface OrderManagementWorkflow {
 
     @WorkflowMethod
-    void orderManagementWorkflow(WorkflowQueue<OrderUpdate> updates);
+    void start();
 
     @SignalMethod
-    void newOrderSignal(OrderUpdate update);
+    void addUpdate(OrderUpdate update);
+
+    @SignalMethod
+    void exit();
 
 }
