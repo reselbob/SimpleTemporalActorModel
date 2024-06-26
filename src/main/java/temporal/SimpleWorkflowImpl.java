@@ -29,9 +29,7 @@ public class OrderManagementWorkflowImpl implements OrderManagementWorkflow {
         signals.put(update);
     }
 
-    // Entity workflow pattern with serialization of request
-    // (ie. only one request is processed at a time)
-    public void orderManagementWorkflow(WorkflowQueue<OrderUpdate> updates) {
+    public void start() {
 
         /*
         for (OrderUpdate element: updates) {

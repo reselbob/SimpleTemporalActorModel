@@ -1,7 +1,7 @@
 package temporal;
 
 import io.temporal.workflow.*;
-import temporal.model.OrderUpdate;
+import temporal.model.OrderInfo;
 import java.util.Queue;
 
 import java.util.List;
@@ -9,9 +9,16 @@ import java.util.List;
 public interface OrderManagementWorkflow {
 
     @WorkflowMethod
-    void orderManagementWorkflow(WorkflowQueue<OrderUpdate> updates);
+    void start();
 
     @SignalMethod
-    void newOrderSignal(OrderUpdate update);
+    void add(OrderInfo orderInfo);
+
+    @SignalMethod
+    void update(OrderInfo orderInfo);
+
+    @SignalMethod
+    void save(OrderInfo orderInfo);
+
 
 }
