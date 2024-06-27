@@ -9,6 +9,8 @@ In terms of the Actor Model, the sample project considers a [Temporal workflow](
 
 The sample project contains a Temporal Workflow and constituent child workflow. Interaction with the workflow is conducted using Temoral's signal feature.
 
+The figure below illustrates the basic structure of the demonstration application.
+
 ![workflow-actor-model-02](https://github.com/reselbob/SimpleTemporalActorModel/assets/1110569/561bca59-2c79-4481-a28d-d83717e26477)
 
 
