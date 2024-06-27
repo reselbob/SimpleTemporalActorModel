@@ -16,6 +16,8 @@ The figure below illustrates the basic structure of the demonstration applicatio
 
 ---
 
+# Installing the code
+
 To execute the code, take the following steps:
 
 The [Java Virtual Machine](https://openjdk.org/) and [Maven](https://maven.apache.org/install.html) need to be installed
