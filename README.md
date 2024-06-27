@@ -2,9 +2,16 @@
 
 The project demonstrates how key features of the Actor Model map onto Temporal workflows.
 
+In terms of the Actor Model, the sample project considers a [Temporal workflow](https://docs.temporal.io/workflows) to be an actor and Temporal [signals](https://docs.temporal.io/encyclopedia/application-message-passing#signals) to be custom messages sent to the actor, in this case, the Temporal Workflow, to instigate specific behavior.
+
+The sample project contains a Temporal Workflow and constituent child workflow. Interaction with the workflow is conducted using Temoral's signal feature.
+
+![workflow-actor-model-02](https://github.com/reselbob/SimpleTemporalActorModel/assets/1110569/561bca59-2c79-4481-a28d-d83717e26477)
+
+
 ---
 
-To execute the code take the following steps:
+To execute the code, take the following steps:
 
 The [Java Virtual Machine](https://openjdk.org/) and [Maven](https://maven.apache.org/install.html) need to be installed
 on the host computer.
