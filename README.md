@@ -1,4 +1,7 @@
 # Understanding a Temporal workflow as an implementation of the Actor Model
+|NOTE|
+|----|
+|In order to get full benefit from using this project, it's useful to have a basic understanding of what Temporal is and how it works. [This tutorial](https://docs.temporal.io/temporal) provides a good basic introduction to the Temporal framework.|
 
 The project demonstrates how key features of the Actor Model map onto Temporal workflows.
 
