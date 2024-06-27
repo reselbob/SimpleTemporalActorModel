@@ -2,6 +2,10 @@ package temporal.model;
 
 import java.util.UUID;
 
+/**
+ * OrderInfo is a simple class that represents the information about an order. It contains fields
+ * for orderId, customerId, updateType, and message.
+ */
 public class OrderInfo {
   public enum UpdateType {
     PURCHASE,
