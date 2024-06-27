@@ -95,4 +95,18 @@ In that same terminal window run:
 mvn exec:java -Dexec.mainClass="temporal.App"
 ```
 
+You'll see output, similar to the following:
+
+```
+[temporal.App.main()] INFO io.temporal.serviceclient.WorkflowServiceStubsImpl - Created WorkflowServiceStubs for channel: ManagedChannelOrphanWrapper{delegate=ManagedChannelImpl{logId=1, target=127.0.0.1:7233}}
+[temporal.App.main()] INFO io.temporal.internal.worker.Poller - start: Poller{name=Workflow Poller taskQueue="SimpleWorkflow", namespace="default", identity=11450@bobs-mac-mini.lan}
+[temporal.App.main()] INFO io.temporal.internal.worker.Poller - start: Poller{name=Activity Poller taskQueue="SimpleWorkflow", namespace="default", identity=11450@bobs-mac-mini.lan}
+[temporal.App.main()] INFO temporal.App - Worker listening on task queue: SimpleWorkflow.
+[workflow-method-SimpleWorkflow-01-6d168fc4-e07f-421a-b779-f64716a02ef6] INFO temporal.SimpleWorkflowImpl - Starting Workflow for SimpleWorkflow
+[signal add] INFO temporal.SimpleWorkflowImpl - Adding order in Workflow: temporal.model.OrderInfo@33d03ac1
+[signal update] INFO temporal.SimpleWorkflowImpl - Updating order in Workflow: temporal.model.OrderInfo@4bc159d1
+[signal notifyCustomer] INFO temporal.SimpleWorkflowImpl - Notifying customer for order from parent workflow: temporal.model.OrderInfo@420dfc77
+[signal exit] INFO temporal.SimpleWorkflowImpl - Exiting Workflow for SimpleWorkflow
+```
+
 
