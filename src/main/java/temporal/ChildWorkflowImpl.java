@@ -2,9 +2,9 @@ package temporal;
 
 import io.temporal.workflow.Workflow;
 import java.time.Duration;
-import temporal.model.OrderInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import temporal.model.OrderInfo;
 
 // Child Workflow Implementation
 public class ChildWorkflowImpl implements ChildWorkflow {
@@ -20,7 +20,8 @@ public class ChildWorkflowImpl implements ChildWorkflow {
 
   @Override
   public void sendNotification(OrderInfo orderInfo) {
-    logger.info("Sending notification for customer from child workflow: " + orderInfo.getCustomerId());
+    logger.info(
+        "Sending notification for customer from child workflow: " + orderInfo.getCustomerId());
     Workflow.sleep(Duration.ofSeconds(3));
     exit = true;
   }
