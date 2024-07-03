@@ -46,14 +46,14 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
     logger.info("Notifying customer for order from parent workflow: " + orderInfo.toString());
     ChildWorkflowOptions childWorkflowOptions =
         ChildWorkflowOptions.newBuilder()
-            .setWorkflowId("childWorkflow")
+            .setWorkflowId("childWorkflow_01")
             .setParentClosePolicy(ParentClosePolicy.PARENT_CLOSE_POLICY_ABANDON)
             .build();
     ChildWorkflow childWorkflow =
         Workflow.newChildWorkflowStub(ChildWorkflow.class, childWorkflowOptions);
-
-    Async.procedure(childWorkflow::sendNotification, orderInfo);
+    Async.procedure(childWorkflow::start);
     Workflow.getWorkflowExecution(childWorkflow).get();
+    Async.procedure(childWorkflow::sendNotification, orderInfo);
   }
 
   @Override

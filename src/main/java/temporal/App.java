@@ -7,6 +7,8 @@ import io.temporal.serviceclient.WorkflowServiceStubs;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 import java.time.Duration;
+
+import io.temporal.workflow.Workflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import temporal.helpers.DataHelper;
@@ -27,7 +29,7 @@ public class App {
 
   private static final Logger logger = LoggerFactory.getLogger(App.class);
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
 
     WorkflowServiceStubs service = WorkflowServiceStubs.newLocalServiceStubs();
     // client that can be used to start and signal workflows
@@ -78,6 +80,7 @@ public class App {
     // signal to the Worker
     wf.notifyCustomer(updateOrder);
 
+    Thread.sleep(5000);
     // Run the workflow's exit() method, which will create and send a exit signal to the Worker
     wf.exit();
   }
@@ -91,7 +94,7 @@ public class App {
     Worker worker = factory.newWorker(TASK_QUEUE);
 
     // Workflows are stateful. So you need a type to create instances.
-    worker.registerWorkflowImplementationTypes(SimpleWorkflowImpl.class);
+    worker.registerWorkflowImplementationTypes(SimpleWorkflowImpl.class, ChildWorkflowImpl.class);
 
     // Register the activities that will be executed within the workflow
     worker.registerActivitiesImplementations(new OrderProcessingActivityImpl());
