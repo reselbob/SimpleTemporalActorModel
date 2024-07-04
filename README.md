@@ -109,4 +109,14 @@ You'll see output, similar to the following:
 [signal exit] INFO temporal.SimpleWorkflowImpl - Exiting Workflow for SimpleWorkflow
 ```
 
+## (6) View the Temporal Web Console
+
+After you get the application running, open a browser and go to the following URL:
+
+```bash
+http://localhost:8233/
+```
+
+You'll see the Temporal Web Console. Click on the `Workflow-01` link to view the timeline and event history of the 
+controller workflow. Click on the `ChildWorkflow_01` link to view the timeline and event history of the child workflow.
 
