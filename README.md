@@ -122,4 +122,4 @@ controller workflow. Click on the `ChildWorkflow_01` link to view the timeline a
 
 ![Web-UI-01](https://github.com/reselbob/SimpleTemporalActorModel/assets/1110569/41af1395-1ebd-4a1a-9f75-f99250709fde)
 
-
+**Temporal Web UI**
