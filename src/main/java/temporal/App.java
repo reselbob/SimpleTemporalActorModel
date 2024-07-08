@@ -91,7 +91,7 @@ public class App {
     // implementations.
     Worker worker = factory.newWorker(TASK_QUEUE);
 
-    // Workflows are stateful. So you need a type to create instances.
+    // Register the parent and child workflow implementations with the Worker
     worker.registerWorkflowImplementationTypes(SimpleWorkflowImpl.class, ChildWorkflowImpl.class);
 
     // Register the activities that will be executed within the workflow
