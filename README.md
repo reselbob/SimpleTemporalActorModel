@@ -1,6 +1,6 @@
 # Understanding a Temporal workflow as an implementation of the Actor Model
 
-The project demonstrates how key features of the Actor Model map onto Temporal workflows.
+The project demonstrates how key features of the Actor Model map onto Temporal Workflows.
 
 |NOTE|
 |----|
@@ -9,7 +9,8 @@ The project demonstrates how key features of the Actor Model map onto Temporal w
 
 In terms of the Actor Model, the sample project considers a [Temporal workflow](https://docs.temporal.io/workflows) to be an actor and Temporal [signals](https://docs.temporal.io/encyclopedia/application-message-passing#signals) to be custom messages sent to the actor, in this case, the Temporal Workflow, to instigate specific behavior.
 
-The sample project contains a Temporal Workflow and constituent child workflow. Interaction with the workflow is conducted using Temoral's signal feature.
+The sample project contains a Temporal Workflow and constituent Child Workflow. Interaction with the Workflow is 
+conducted using Temporal's Signal feature.
 
 The figure below illustrates the basic structure of the demonstration application.
 
@@ -58,7 +59,7 @@ OS name: "linux", version: "5.19.0-46-generic", arch: "amd64", family: "unix"
 
 ## (2) Download and install the Temporal CLI (which includes the server)
 
-If you do not have the Temporal server installed, click the link below to go to the Temporal documentation that has the
+If you do not have the Temporal Service installed, click the link below to go to the Temporal documentation that has the
 instructions for installing the Temporal CLI.
 
 [https://docs.temporal.io/cli/#installation](https://docs.temporal.io/cli/#installation)
@@ -69,7 +70,7 @@ The Temporal development server ships with the CLI.
 
 ## (3) Start the Temporal Server
 
-Here is the command for starting the Temporal Server on a local Ubuntu machine. Execute the command in a separate
+Here is the command for starting the Temporal Service on a local Ubuntu machine. Execute the command in a separate
 terminal
 window.
 
@@ -121,5 +122,7 @@ You'll see the Temporal Web Console. Click on the `Workflow-01` link to view the
 controller workflow. Click on the `ChildWorkflow_01` link to view the timeline and event history of the child workflow.
 
 ![Web-UI-01](https://github.com/reselbob/SimpleTemporalActorModel/assets/1110569/41af1395-1ebd-4a1a-9f75-f99250709fde)
+
+**Temporal Web UI**
 
 
