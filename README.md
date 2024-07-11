@@ -59,7 +59,7 @@ OS name: "linux", version: "5.19.0-46-generic", arch: "amd64", family: "unix"
 
 ---
 
-## (2) Download and install the Temporal CLI (which includes the server)
+## (2) Download and install the Temporal CLI (which includes the Service)
 
 If you do not have the Temporal Service installed, click the link below to go to the Temporal documentation that has the
 instructions for installing the Temporal CLI.
@@ -70,7 +70,7 @@ The Temporal development server ships with the CLI.
 
 ---
 
-## (3) Start the Temporal Server
+## (3) Start the Temporal Service
 
 Here is the command for starting the Temporal Service on a local Ubuntu machine. Execute the command in a separate
 terminal
