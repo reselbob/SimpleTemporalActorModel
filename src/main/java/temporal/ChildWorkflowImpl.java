@@ -1,5 +1,6 @@
 package temporal;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.temporal.workflow.Workflow;
 import java.time.Duration;
 import org.slf4j.Logger;
@@ -9,6 +10,8 @@ import temporal.model.OrderInfo;
 // Child Workflow Implementation
 public class ChildWorkflowImpl implements ChildWorkflow {
   private static final Logger logger = LoggerFactory.getLogger(ChildWorkflowImpl.class);
+
+  ObjectMapper objectMapper = new ObjectMapper();
 
   private boolean exit = false;
 
@@ -20,11 +23,13 @@ public class ChildWorkflowImpl implements ChildWorkflow {
 
   @Override
   public void sendNotification(OrderInfo orderInfo) {
-    logger.info(
-        String.format(
-            "Sending notification for customer from child workflow: %s",
-            orderInfo.getCustomerId()));
-    Workflow.sleep(Duration.ofSeconds(3));
-    exit = true;
+    try {
+      String json = objectMapper.writeValueAsString(orderInfo);
+      logger.info(String.format("Sending notification for customer from child workflow: %s", json));
+      Workflow.sleep(Duration.ofSeconds(3));
+      exit = true;
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+    }
   }
 }

@@ -102,15 +102,19 @@ mvn exec:java -Dexec.mainClass="temporal.App"
 You'll see output, similar to the following:
 
 ```
-[temporal.App.main()] INFO io.temporal.serviceclient.WorkflowServiceStubsImpl - Created WorkflowServiceStubs for channel: ManagedChannelOrphanWrapper{delegate=ManagedChannelImpl{logId=1, target=127.0.0.1:7233}}
-[temporal.App.main()] INFO io.temporal.internal.worker.Poller - start: Poller{name=Workflow Poller taskQueue="SimpleWorkflow", namespace="default", identity=11450@bobs-mac-mini.lan}
-[temporal.App.main()] INFO io.temporal.internal.worker.Poller - start: Poller{name=Activity Poller taskQueue="SimpleWorkflow", namespace="default", identity=11450@bobs-mac-mini.lan}
-[temporal.App.main()] INFO temporal.App - Worker listening on task queue: SimpleWorkflow.
-[workflow-method-SimpleWorkflow-01-6d168fc4-e07f-421a-b779-f64716a02ef6] INFO temporal.SimpleWorkflowImpl - Starting Workflow for SimpleWorkflow
-[signal add] INFO temporal.SimpleWorkflowImpl - Adding order in Workflow: temporal.model.OrderInfo@33d03ac1
-[signal update] INFO temporal.SimpleWorkflowImpl - Updating order in Workflow: temporal.model.OrderInfo@4bc159d1
-[signal notifyCustomer] INFO temporal.SimpleWorkflowImpl - Notifying customer for order from parent workflow: temporal.model.OrderInfo@420dfc77
-[signal exit] INFO temporal.SimpleWorkflowImpl - Exiting Workflow for SimpleWorkflow
+08:35:35.739 [temporal.App.main()] INFO  i.t.s.WorkflowServiceStubsImpl - Created WorkflowServiceStubs for channel: ManagedChannelOrphanWrapper{delegate=ManagedChannelImpl{logId=1, target=127.0.0.1:7233}}
+08:35:35.967 [temporal.App.main()] INFO  io.temporal.internal.worker.Poller - start: Poller{name=Workflow Poller taskQueue="SimpleWorkflow", namespace="default", identity=53313@Bobs-Mac-mini.local}
+08:35:35.971 [temporal.App.main()] INFO  io.temporal.internal.worker.Poller - start: Poller{name=Activity Poller taskQueue="SimpleWorkflow", namespace="default", identity=53313@Bobs-Mac-mini.local}
+08:35:35.973 [temporal.App.main()] INFO  temporal.App - Worker listening on task queue: SimpleWorkflow.
+08:35:36.072 [workflow-method-SimpleWorkflow-01-320e15cd-8314-4a1f-add5-71f55b391d25] INFO  temporal.SimpleWorkflowImpl - Starting Workflow for SimpleWorkflow
+08:35:36.100 [signal add] INFO  temporal.SimpleWorkflowImpl - Order added in Workflow: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"PURCHASE","message":"YWV49GO9R1"}
+08:35:36.123 [signal update] INFO  temporal.SimpleWorkflowImpl - Order updated in Workflow: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"MODIFY","message":"YWV49GO9R1"}
+08:35:36.123 [signal notifyCustomer] INFO  temporal.SimpleWorkflowImpl - Notifying customer for order from parent workflow: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"MODIFY","message":"YWV49GO9R1"}
+08:35:36.140 [workflow-method-ChildWorkflow_01-e6426e6c-ae31-4b5c-9fcc-edc802b20e42] INFO  temporal.ChildWorkflowImpl - Starting Workflow for ChildWorkflow
+08:35:36.142 [Activity Executor taskQueue="SimpleWorkflow", namespace="default": 1] INFO  t.OrderProcessingActivityImpl - Order added in Activity: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"PURCHASE","message":"YWV49GO9R1"}
+08:35:36.142 [Activity Executor taskQueue="SimpleWorkflow", namespace="default": 2] INFO  t.OrderProcessingActivityImpl - Order updated in Activity: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"MODIFY","message":"YWV49GO9R1"}
+08:35:36.153 [signal sendNotification] INFO  temporal.ChildWorkflowImpl - Sending notification for customer from child workflow: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"MODIFY","message":"YWV49GO9R1"}
+08:35:41.063 [signal exit] INFO  temporal.SimpleWorkflowImpl - Exiting Workflow for SimpleWorkflow
 ```
 
 ## (6) View the Temporal Web Console

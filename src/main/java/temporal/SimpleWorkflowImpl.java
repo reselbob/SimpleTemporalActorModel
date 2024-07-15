@@ -1,5 +1,6 @@
 package temporal;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.temporal.activity.ActivityOptions;
 import io.temporal.api.enums.v1.ParentClosePolicy;
 import io.temporal.workflow.Async;
@@ -18,6 +19,8 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
 
   private static final Logger logger = LoggerFactory.getLogger(SimpleWorkflowImpl.class);
 
+  ObjectMapper objectMapper = new ObjectMapper();
+
   private final List<OrderInfo> registeredOrderInfos = new LinkedList<>();
 
   private final OrderProcessingActivity orderProcessingActivity =
@@ -29,26 +32,33 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
 
   @Override
   public void update(OrderInfo orderInfo) {
-    logger.info(String.format("Order updated in Workflow: %s", orderInfo.toString()));
-    // Add new order updates to the queue
-    orderProcessingActivity.update(orderInfo);
+    try {
+      String json = objectMapper.writeValueAsString(orderInfo);
+      logger.info(String.format("Order updated in Workflow: %s", json));
+      orderProcessingActivity.update(orderInfo);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+    }
   }
 
   @Override
   public void notifyCustomer(OrderInfo orderInfo) {
-    logger.info(
-        String.format(
-            "Notifying customer for order from parent workflow: %s", orderInfo.toString()));
-    ChildWorkflowOptions childWorkflowOptions =
-        ChildWorkflowOptions.newBuilder()
-            .setWorkflowId("ChildWorkflow_01")
-            .setParentClosePolicy(ParentClosePolicy.PARENT_CLOSE_POLICY_ABANDON)
-            .build();
-    ChildWorkflow childWorkflow =
-        Workflow.newChildWorkflowStub(ChildWorkflow.class, childWorkflowOptions);
-    Async.procedure(childWorkflow::start);
-    Workflow.getWorkflowExecution(childWorkflow).get();
-    Async.procedure(childWorkflow::sendNotification, orderInfo);
+    try {
+      String json = objectMapper.writeValueAsString(orderInfo);
+      logger.info(String.format("Notifying customer for order from parent workflow: %s", json));
+      ChildWorkflowOptions childWorkflowOptions =
+          ChildWorkflowOptions.newBuilder()
+              .setWorkflowId("ChildWorkflow_01")
+              .setParentClosePolicy(ParentClosePolicy.PARENT_CLOSE_POLICY_ABANDON)
+              .build();
+      ChildWorkflow childWorkflow =
+          Workflow.newChildWorkflowStub(ChildWorkflow.class, childWorkflowOptions);
+      Async.procedure(childWorkflow::start);
+      Workflow.getWorkflowExecution(childWorkflow).get();
+      Async.procedure(childWorkflow::sendNotification, orderInfo);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+    }
   }
 
   @Override
@@ -65,8 +75,13 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
 
   @Override
   public void add(OrderInfo orderInfo) {
-    logger.info(String.format("Order added in Workflow: %s", orderInfo.toString()));
-    orderProcessingActivity.add(orderInfo);
-    this.registeredOrderInfos.add(orderInfo);
+    try {
+      String json = objectMapper.writeValueAsString(orderInfo);
+      logger.info(String.format("Order added in Workflow: %s", json));
+      orderProcessingActivity.add(orderInfo);
+      this.registeredOrderInfos.add(orderInfo);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+    }
   }
 }
