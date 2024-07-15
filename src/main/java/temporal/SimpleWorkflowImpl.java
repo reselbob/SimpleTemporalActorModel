@@ -1,6 +1,5 @@
 package temporal;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.temporal.activity.ActivityOptions;
 import io.temporal.api.enums.v1.ParentClosePolicy;
 import io.temporal.workflow.Async;
@@ -17,8 +16,6 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
   private boolean exit = false;
   private static final Logger logger = Workflow.getLogger(SimpleWorkflowImpl.class);
 
-  ObjectMapper objectMapper = new ObjectMapper();
-
   private final List<OrderInfo> registeredOrderInfos = new LinkedList<>();
 
   private final OrderProcessingActivity orderProcessingActivity =
@@ -31,7 +28,6 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
   @Override
   public void update(OrderInfo orderInfo) {
     try {
-      //String json = objectMapper.writeValueAsString(orderInfo);
       logger.info("Order updated in Workflow: {}", orderInfo.toString());
       orderProcessingActivity.update(orderInfo);
     } catch (Exception e) {
@@ -42,7 +38,6 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
   @Override
   public void notifyCustomer(OrderInfo orderInfo) {
     try {
-      //String json = objectMapper.writeValueAsString(orderInfo);
       logger.info("Notifying customer for order from parent workflow: {}", orderInfo.toString());
       ChildWorkflowOptions childWorkflowOptions =
           ChildWorkflowOptions.newBuilder()
@@ -74,7 +69,6 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
   @Override
   public void add(OrderInfo orderInfo) {
     try {
-      //String json = objectMapper.writeValueAsString(orderInfo);
       logger.info("Order added in Workflow:{}", orderInfo.toString());
       orderProcessingActivity.add(orderInfo);
       this.registeredOrderInfos.add(orderInfo);
