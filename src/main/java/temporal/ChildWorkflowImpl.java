@@ -25,7 +25,7 @@ public class ChildWorkflowImpl implements ChildWorkflow {
   public void sendNotification(OrderInfo orderInfo) {
     try {
       String json = objectMapper.writeValueAsString(orderInfo);
-      logger.info(String.format("Sending notification for customer from child workflow: %s", json));
+      logger.info("Sending notification for customer from child workflow: {}", json);
       Workflow.sleep(Duration.ofSeconds(3));
       exit = true;
     } catch (Exception e) {

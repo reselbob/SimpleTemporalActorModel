@@ -14,7 +14,7 @@ public class OrderProcessingActivityImpl implements OrderProcessingActivity {
   public void add(OrderInfo orderInfo) {
     try {
       String json = objectMapper.writeValueAsString(orderInfo);
-      logger.info(String.format("Order added in Activity: %s", json));
+      logger.info("Order added in Activity: {}", json);
     } catch (Exception e) {
       logger.error(e.getMessage());
     }
@@ -24,7 +24,7 @@ public class OrderProcessingActivityImpl implements OrderProcessingActivity {
   public void update(OrderInfo orderInfo) {
     try {
       String json = objectMapper.writeValueAsString(orderInfo);
-      logger.info(String.format("Order updated in Activity: %s", json));
+      logger.info("Order updated in Activity: {}", json);
     } catch (Exception e) {
       logger.error(e.getMessage());
     }

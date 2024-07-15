@@ -34,7 +34,7 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
   public void update(OrderInfo orderInfo) {
     try {
       String json = objectMapper.writeValueAsString(orderInfo);
-      logger.info(String.format("Order updated in Workflow: %s", json));
+      logger.info("Order updated in Workflow: {}", json);
       orderProcessingActivity.update(orderInfo);
     } catch (Exception e) {
       logger.error(e.getMessage());
@@ -45,7 +45,7 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
   public void notifyCustomer(OrderInfo orderInfo) {
     try {
       String json = objectMapper.writeValueAsString(orderInfo);
-      logger.info(String.format("Notifying customer for order from parent workflow: %s", json));
+      logger.info("Notifying customer for order from parent workflow: {}", json);
       ChildWorkflowOptions childWorkflowOptions =
           ChildWorkflowOptions.newBuilder()
               .setWorkflowId("ChildWorkflow_01")
@@ -55,7 +55,7 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
           Workflow.newChildWorkflowStub(ChildWorkflow.class, childWorkflowOptions);
       Async.procedure(childWorkflow::start);
       Workflow.getWorkflowExecution(childWorkflow).get();
-      Async.procedure(childWorkflow::sendNotification, orderInfo);
+      childWorkflow.sendNotification(orderInfo);
     } catch (Exception e) {
       logger.error(e.getMessage());
     }
@@ -77,7 +77,7 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
   public void add(OrderInfo orderInfo) {
     try {
       String json = objectMapper.writeValueAsString(orderInfo);
-      logger.info(String.format("Order added in Workflow: %s", json));
+      logger.info("Order added in Workflow:{}", json);
       orderProcessingActivity.add(orderInfo);
       this.registeredOrderInfos.add(orderInfo);
     } catch (Exception e) {
