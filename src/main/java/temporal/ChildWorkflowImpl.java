@@ -21,7 +21,9 @@ public class ChildWorkflowImpl implements ChildWorkflow {
   @Override
   public void sendNotification(OrderInfo orderInfo) {
     logger.info(
-        "Sending notification for customer from child workflow: " + orderInfo.getCustomerId());
+        String.format(
+            "Sending notification for customer from child workflow: %s",
+            orderInfo.getCustomerId()));
     Workflow.sleep(Duration.ofSeconds(3));
     exit = true;
   }

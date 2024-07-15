@@ -29,21 +29,16 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
 
   @Override
   public void update(OrderInfo orderInfo) {
-    logger.info("Updating order in Workflow: " + orderInfo.toString());
+    logger.info(String.format("Order updated in Workflow: %s", orderInfo.toString()));
     // Add new order updates to the queue
     orderProcessingActivity.update(orderInfo);
   }
 
   @Override
-  public void register(OrderInfo orderInfo) {
-    logger.info("Registering order in Workflow: " + orderInfo.toString());
-    this.registeredOrderInfos.add(orderInfo);
-  }
-
-  @Override
   public void notifyCustomer(OrderInfo orderInfo) {
-
-    logger.info("Notifying customer for order from parent workflow: " + orderInfo.toString());
+    logger.info(
+        String.format(
+            "Notifying customer for order from parent workflow: %s", orderInfo.toString()));
     ChildWorkflowOptions childWorkflowOptions =
         ChildWorkflowOptions.newBuilder()
             .setWorkflowId("ChildWorkflow_01")
@@ -70,7 +65,7 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
 
   @Override
   public void add(OrderInfo orderInfo) {
-    logger.info("Adding order in Workflow: " + orderInfo.toString());
+    logger.info(String.format("Order added in Workflow: %s", orderInfo.toString()));
     orderProcessingActivity.add(orderInfo);
     this.registeredOrderInfos.add(orderInfo);
   }

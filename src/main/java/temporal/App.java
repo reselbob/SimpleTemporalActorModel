@@ -37,7 +37,7 @@ public class App {
     WorkerFactory factory = startWorkerWithFactory(client);
 
     // Declare the WORKFLOW_ID
-    String WORKFLOW_ID = TASK_QUEUE + "-" + "01";
+    String WORKFLOW_ID = String.format("%s-01", TASK_QUEUE);
 
     WorkflowOptions options =
         WorkflowOptions.newBuilder()

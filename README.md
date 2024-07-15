@@ -4,10 +4,11 @@ The project demonstrates how key features of the Actor Model map onto Temporal W
 
 | NOTE                                                                                                                                                                                                                                                   |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| In order to get full benefit from using this project, it's useful to have a basic understanding of what Temporal is and how it works. [This tutorial](https://docs.temporal.io/temporal) provides a good basic introduction to the Temporal framework. |
+| In order to get full benefit from using this project, it's useful to have a basic understanding of what Temporal is and how it works. [This overview](https://docs.temporal.io/temporal) provides a good basic introduction to the Temporal framework. |
 
 
-In the context of the Actor Model, the sample project treats a [Temporal Workflow](https://docs.temporalio/workflows)
+In the context of the [Actor Model](https://temporal.io/blog/workflows-as-actors-is-it-really-possible), the sample 
+project treats a [Temporal Workflow](https://docs.temporalio/workflows)
 as an actor. Temporal [Signals](https://docs.temporalio/encyclopedia/application-message-passing#signals) are considered
 custom messages sent to the actor, (the Temporal Workflow) to trigger specific behavior.
 

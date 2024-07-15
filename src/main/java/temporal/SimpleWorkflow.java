@@ -16,9 +16,6 @@ public interface SimpleWorkflow {
   void update(OrderInfo orderInfo);
 
   @SignalMethod
-  void register(OrderInfo orderInfo);
-
-  @SignalMethod
   void notifyCustomer(OrderInfo orderInfo);
 
   @SignalMethod
