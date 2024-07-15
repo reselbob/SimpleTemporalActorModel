@@ -4,12 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.temporal.workflow.Workflow;
 import java.time.Duration;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import temporal.model.OrderInfo;
 
 // Child Workflow Implementation
 public class ChildWorkflowImpl implements ChildWorkflow {
-  private static final Logger logger = LoggerFactory.getLogger(ChildWorkflowImpl.class);
+  private static final Logger logger = Workflow.getLogger(ChildWorkflowImpl.class);
 
   ObjectMapper objectMapper = new ObjectMapper();
 

@@ -1,13 +1,13 @@
 package temporal;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.temporal.workflow.Workflow;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import temporal.model.OrderInfo;
 
 public class OrderProcessingActivityImpl implements OrderProcessingActivity {
 
-  private static final Logger logger = LoggerFactory.getLogger(OrderProcessingActivityImpl.class);
+  private static final Logger logger = Workflow.getLogger(OrderProcessingActivityImpl.class);
   ObjectMapper objectMapper = new ObjectMapper();
 
   @Override

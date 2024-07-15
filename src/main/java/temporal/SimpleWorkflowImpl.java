@@ -10,14 +10,12 @@ import java.time.Duration;
 import java.util.LinkedList;
 import java.util.List;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import temporal.model.OrderInfo;
 
 public class SimpleWorkflowImpl implements SimpleWorkflow {
 
   private boolean exit = false;
-
-  private static final Logger logger = LoggerFactory.getLogger(SimpleWorkflowImpl.class);
+  private static final Logger logger = Workflow.getLogger(SimpleWorkflowImpl.class);
 
   ObjectMapper objectMapper = new ObjectMapper();
 

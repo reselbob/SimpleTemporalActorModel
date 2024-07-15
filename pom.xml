@@ -20,7 +20,7 @@
         <dependency>
             <groupId>io.temporal</groupId>
             <artifactId>temporal-sdk</artifactId>
-            <version>1.23.2</version>
+            <version>1.24.1</version>
         </dependency>
 
         <dependency>
