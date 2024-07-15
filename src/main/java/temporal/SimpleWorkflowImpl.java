@@ -31,8 +31,8 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
   @Override
   public void update(OrderInfo orderInfo) {
     try {
-      String json = objectMapper.writeValueAsString(orderInfo);
-      logger.info("Order updated in Workflow: {}", json);
+      //String json = objectMapper.writeValueAsString(orderInfo);
+      logger.info("Order updated in Workflow: {}", orderInfo.toString());
       orderProcessingActivity.update(orderInfo);
     } catch (Exception e) {
       logger.error(e.getMessage());
@@ -42,8 +42,8 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
   @Override
   public void notifyCustomer(OrderInfo orderInfo) {
     try {
-      String json = objectMapper.writeValueAsString(orderInfo);
-      logger.info("Notifying customer for order from parent workflow: {}", json);
+      //String json = objectMapper.writeValueAsString(orderInfo);
+      logger.info("Notifying customer for order from parent workflow: {}", orderInfo.toString());
       ChildWorkflowOptions childWorkflowOptions =
           ChildWorkflowOptions.newBuilder()
               .setWorkflowId("ChildWorkflow_01")
@@ -74,8 +74,8 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
   @Override
   public void add(OrderInfo orderInfo) {
     try {
-      String json = objectMapper.writeValueAsString(orderInfo);
-      logger.info("Order added in Workflow:{}", json);
+      //String json = objectMapper.writeValueAsString(orderInfo);
+      logger.info("Order added in Workflow:{}", orderInfo.toString());
       orderProcessingActivity.add(orderInfo);
       this.registeredOrderInfos.add(orderInfo);
     } catch (Exception e) {

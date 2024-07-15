@@ -13,8 +13,8 @@ public class OrderProcessingActivityImpl implements OrderProcessingActivity {
   @Override
   public void add(OrderInfo orderInfo) {
     try {
-      String json = objectMapper.writeValueAsString(orderInfo);
-      logger.info("Order added in Activity: {}", json);
+      //String json = objectMapper.writeValueAsString(orderInfo);
+      logger.info("Order added in Activity: {}", orderInfo.toString());
     } catch (Exception e) {
       logger.error(e.getMessage());
     }
@@ -23,8 +23,8 @@ public class OrderProcessingActivityImpl implements OrderProcessingActivity {
   @Override
   public void update(OrderInfo orderInfo) {
     try {
-      String json = objectMapper.writeValueAsString(orderInfo);
-      logger.info("Order updated in Activity: {}", json);
+      //String json = objectMapper.writeValueAsString(orderInfo);
+      logger.info("Order updated in Activity: {}", orderInfo.toString());
     } catch (Exception e) {
       logger.error(e.getMessage());
     }
