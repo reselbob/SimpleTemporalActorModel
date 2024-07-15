@@ -15,6 +15,6 @@ public class OrderProcessingActivityImpl implements OrderProcessingActivity {
 
   @Override
   public void update(OrderInfo orderInfo) {
-    logger.info("Order updated in Activity: " + orderInfo.toString());
+    logger.info(String.format("Order updated in Activity: %s", orderInfo.toString()));
   }
 }
