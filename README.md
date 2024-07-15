@@ -102,19 +102,19 @@ mvn exec:java -Dexec.mainClass="temporal.App"
 You'll see output, similar to the following:
 
 ```
-08:35:35.739 [temporal.App.main()] INFO  i.t.s.WorkflowServiceStubsImpl - Created WorkflowServiceStubs for channel: ManagedChannelOrphanWrapper{delegate=ManagedChannelImpl{logId=1, target=127.0.0.1:7233}}
-08:35:35.967 [temporal.App.main()] INFO  io.temporal.internal.worker.Poller - start: Poller{name=Workflow Poller taskQueue="SimpleWorkflow", namespace="default", identity=53313@Bobs-Mac-mini.local}
-08:35:35.971 [temporal.App.main()] INFO  io.temporal.internal.worker.Poller - start: Poller{name=Activity Poller taskQueue="SimpleWorkflow", namespace="default", identity=53313@Bobs-Mac-mini.local}
-08:35:35.973 [temporal.App.main()] INFO  temporal.App - Worker listening on task queue: SimpleWorkflow.
-08:35:36.072 [workflow-method-SimpleWorkflow-01-320e15cd-8314-4a1f-add5-71f55b391d25] INFO  temporal.SimpleWorkflowImpl - Starting Workflow for SimpleWorkflow
-08:35:36.100 [signal add] INFO  temporal.SimpleWorkflowImpl - Order added in Workflow: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"PURCHASE","message":"YWV49GO9R1"}
-08:35:36.123 [signal update] INFO  temporal.SimpleWorkflowImpl - Order updated in Workflow: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"MODIFY","message":"YWV49GO9R1"}
-08:35:36.123 [signal notifyCustomer] INFO  temporal.SimpleWorkflowImpl - Notifying customer for order from parent workflow: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"MODIFY","message":"YWV49GO9R1"}
-08:35:36.140 [workflow-method-ChildWorkflow_01-e6426e6c-ae31-4b5c-9fcc-edc802b20e42] INFO  temporal.ChildWorkflowImpl - Starting Workflow for ChildWorkflow
-08:35:36.142 [Activity Executor taskQueue="SimpleWorkflow", namespace="default": 1] INFO  t.OrderProcessingActivityImpl - Order added in Activity: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"PURCHASE","message":"YWV49GO9R1"}
-08:35:36.142 [Activity Executor taskQueue="SimpleWorkflow", namespace="default": 2] INFO  t.OrderProcessingActivityImpl - Order updated in Activity: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"MODIFY","message":"YWV49GO9R1"}
-08:35:36.153 [signal sendNotification] INFO  temporal.ChildWorkflowImpl - Sending notification for customer from child workflow: {"orderId":"50fb7433-46bb-4ebd-a577-9cdab982d8ff","customerId":"f171619a-3fcb-4865-90d5-cf74e59a7201","updateType":"MODIFY","message":"YWV49GO9R1"}
-08:35:41.063 [signal exit] INFO  temporal.SimpleWorkflowImpl - Exiting Workflow for SimpleWorkflow
+15:04:49.813 [temporal.App.main()] INFO  i.t.s.WorkflowServiceStubsImpl - Created WorkflowServiceStubs for channel: ManagedChannelOrphanWrapper{delegate=ManagedChannelImpl{logId=1, target=127.0.0.1:7233}}
+15:04:50.043 [temporal.App.main()] INFO  io.temporal.internal.worker.Poller - start: Poller{name=Workflow Poller taskQueue="SimpleWorkflow", namespace="default", identity=61479@bobs-mac-mini.lan}
+15:04:50.046 [temporal.App.main()] INFO  io.temporal.internal.worker.Poller - start: Poller{name=Activity Poller taskQueue="SimpleWorkflow", namespace="default", identity=61479@bobs-mac-mini.lan}
+15:04:50.048 [temporal.App.main()] INFO  temporal.App - Worker listening on task queue: SimpleWorkflow.
+15:04:50.150 [workflow-method-SimpleWorkflow-01-fe3d1040-cff4-4b58-b17b-cc3e3e383d76] INFO  temporal.SimpleWorkflowImpl - Starting Workflow for SimpleWorkflow
+15:04:50.179 [signal add] INFO  temporal.SimpleWorkflowImpl - Order added in Workflow:{"orderId":"c2ea65e6-2d06-46da-bd52-8816b99355ff", "customerId":"7f5922c1-9793-4c6c-8761-26fb9bfc589a", "updateType":"PURCHASE", "message":"MV3H2ANVAO"}
+15:04:50.193 [signal update] INFO  temporal.SimpleWorkflowImpl - Order updated in Workflow: {"orderId":"c2ea65e6-2d06-46da-bd52-8816b99355ff", "customerId":"7f5922c1-9793-4c6c-8761-26fb9bfc589a", "updateType":"MODIFY", "message":"MV3H2ANVAO"}
+15:04:50.199 [signal notifyCustomer] INFO  temporal.SimpleWorkflowImpl - Notifying customer for order from parent workflow: {"orderId":"c2ea65e6-2d06-46da-bd52-8816b99355ff", "customerId":"7f5922c1-9793-4c6c-8761-26fb9bfc589a", "updateType":"MODIFY", "message":"MV3H2ANVAO"}
+15:04:50.221 [workflow-method-ChildWorkflow_01-98928d6e-8f08-465a-90e7-4fdbd366a4d4] INFO  temporal.ChildWorkflowImpl - Starting Workflow for ChildWorkflow
+15:04:50.224 [Activity Executor taskQueue="SimpleWorkflow", namespace="default": 1] INFO  t.OrderProcessingActivityImpl - Order updated in Activity: {"orderId":"c2ea65e6-2d06-46da-bd52-8816b99355ff", "customerId":"7f5922c1-9793-4c6c-8761-26fb9bfc589a", "updateType":"MODIFY", "message":"MV3H2ANVAO"}
+15:04:50.224 [Activity Executor taskQueue="SimpleWorkflow", namespace="default": 2] INFO  t.OrderProcessingActivityImpl - Order added in Activity: {"orderId":"c2ea65e6-2d06-46da-bd52-8816b99355ff", "customerId":"7f5922c1-9793-4c6c-8761-26fb9bfc589a", "updateType":"PURCHASE", "message":"MV3H2ANVAO"}
+15:04:50.241 [signal sendNotification] INFO  temporal.ChildWorkflowImpl - Sending notification for customer from child workflow: {"orderId":"c2ea65e6-2d06-46da-bd52-8816b99355ff", "customerId":"7f5922c1-9793-4c6c-8761-26fb9bfc589a", "updateType":"MODIFY", "message":"MV3H2ANVAO"}
+15:04:55.129 [signal exit] INFO  temporal.SimpleWorkflowImpl - Exiting Workflow for SimpleWorkflow
 ```
 
 ## (6) View the Temporal Web Console
