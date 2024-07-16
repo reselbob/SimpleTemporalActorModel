@@ -1,12 +1,12 @@
 package temporal;
 
-import io.temporal.workflow.Workflow;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import temporal.model.OrderInfo;
 
 public class OrderProcessingActivityImpl implements OrderProcessingActivity {
 
-  private static final Logger logger = Workflow.getLogger(OrderProcessingActivityImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(OrderProcessingActivityImpl.class);
 
   @Override
   public void add(OrderInfo orderInfo) {
