@@ -45,26 +45,13 @@ public class OrderInfo {
 
   @Override
   public String toString() {
-    return "{"
-        + "\"orderId\":"
-        + "\""
-        + orderId
-        + "\", "
-        + "\""
-        + "customerId\":"
-        + "\""
-        + customerId
-        + "\", "
-        + "\""
-        + "updateType\":"
-        + "\""
-        + updateType
-        + "\", "
-        + "\""
-        + "message\":"
-        + "\""
-        + message
-        + "\""
-        + '}';
+    return String.format(
+        "{"
+            + "\"orderId\":\"%s\", "
+            + "\"customerId\":\"%s\", "
+            + "\"updateType\":\"%s\", "
+            + "\"message\":\"%s\""
+            + "}",
+        orderId, customerId, updateType, message);
   }
 }
