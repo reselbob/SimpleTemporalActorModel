@@ -23,8 +23,6 @@ public class SimpleWorkflowImpl implements SimpleWorkflow {
           OrderProcessingActivity.class,
           ActivityOptions.newBuilder().setStartToCloseTimeout(Duration.ofSeconds(2)).build());
 
-  private io.temporal.workflow.WorkflowInfo info;
-
   @Override
   public void update(OrderInfo orderInfo) {
     try {
